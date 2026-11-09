@@ -14,7 +14,7 @@ jobs:
       - name: Descargar el repositorio (historial completo)
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Desactiva clonado superficial para que SonarQube analice blame y autorías
+          fetch-depth: 0
 
       - name: Configurar Python
         uses: actions/setup-python@v5
@@ -35,6 +35,13 @@ jobs:
         uses: sonarsource/sonarqube-scan-action@v5
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          args: >
+            -Dsonar.projectKey=kokitaG_examen_calidad_software_base
+            -Dsonar.organization=kokitag
+            -Dsonar.sources=inventario
+            -Dsonar.tests=tests
+            -Dsonar.python.coverage.reportPaths=coverage.xml
 
       - name: SonarQube Quality Gate Check
         uses: sonarsource/sonarqube-quality-gate-action@v1
