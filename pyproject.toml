@@ -10,7 +10,10 @@ requires-python = ">=3.10"
 dependencies = []
 
 [project.optional-dependencies]
-test = ["pytest>=8,<10", "pytest-cov>=5,<8"]
+test = [
+    "pytest==8.3.4",
+    "pytest-cov==6.0.0"
+]
 
 [tool.setuptools.packages.find]
 include = ["inventario*"]
